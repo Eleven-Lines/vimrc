@@ -1,0 +1,95 @@
+### Vim8 compatibility ###{{{
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+# }}}
+
+### Dark Powerd ###{{{
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_source = "source ~/.vim/rc/plugins/denite.rc.vim"
+hook_add = '''
+    " The prefix key.
+    nnoremap    [denite]   <Nop>
+    nmap        <Space>d [denite]
+    " denite.vim keymap
+    nnoremap <silent> [denite]l :<C-u>Denite<Space>buffer<CR>
+    nnoremap <silent> <Space><Space> :<C-u>Denite<Space>buffer<CR>
+    nnoremap <silent> [denite]o :<C-u>Denite<Space>outline<CR>
+    nnoremap <silent> <Space>/ :<C-u>DeniteProjectDir<Space>grep<CR>
+'''
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+# }}}
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+build = 'bash install.sh'
+hook_add = '''set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls'],
+    \ }
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = "source ~/.vim/rc/plugins/lightline.rc.vim"
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_column_always = 1
+let g:ale_statusline_format = [" %d", " %d", "⬥ ok"]
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+hook_add = 'let g:surround_{char2nr("(")} = "(\r)"'
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+hook_add = '''
+augroup vimrc-highlight
+  autocmd!
+  autocmd ColorScheme * highlight ZenSpace ctermbg=52 guibg=#5f0000
+augroup END
+'''
+
+[[plugins]]
+repo = 'deton/jasegment.vim'
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+
+### Colorschemes ###{{{
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'tpozzi/Sidonia'
+
+[[plugins]]
+repo = 'jeetsukumaran/vim-nefertiti'
+
+[[plugins]]
+repo = 'jonathanfilip/vim-lucius'
+# }}}

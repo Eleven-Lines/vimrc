@@ -1,0 +1,20 @@
+if &compatible
+  set nocompatible
+endif
+
+set encoding=utf-8
+
+function! s:load_rc(path)
+    let abspath = resolve(expand('~/.vim/rc/' . a:path))
+    execute 'source' fnameescape(abspath)
+    return
+endfunction
+
+if has('vim_starting')
+    call s:load_rc('init.rc.vim')
+endif
+
+
+call s:load_rc('dein.rc.vim')
+call s:load_rc('options.rc.vim')
+call s:load_rc('mappings.rc.vim')
