@@ -4,6 +4,7 @@ noremap <buffer> $ $$<Left>
 let g:tex_fold_enabled=1
 let g:tex_flavor = "plain"
 
+set conceallevel=0
 
 
 augroup MyHilight

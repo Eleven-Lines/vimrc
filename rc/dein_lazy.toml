@@ -19,12 +19,14 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+on_source = ['neosnippet.vim']
 on_i = 1
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim''
 on_i = 1
-on_source = '''
+depends = ['neosnippet-snippets']
+hook_source = '''
     inoremap <C-k> <Plug>(neosnippet_expand_or_jump)
     snoremap <C-k> <Plug>(neosnippet_expand_or_jump)
     xnoremap <C-k> <Plug>(neosnippet_expand_target)
@@ -37,7 +39,7 @@ on_source = '''
 repo = 'zchee/deoplete-clang'
 on_ft = ['c', 'cpp', 'objc', 'objcpp']
 depends = ['deoplete.nvim']
-on_source = '''
+hook_source = '''
 let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/cling/0.5_1/libexec/lib/libclang.dylib"
 '''
 # }}}
@@ -119,6 +121,10 @@ repo = 'docunext/closetag.vim'
 on_ft = ['html', 'vue', 'xml', 'markdown']
 
 [[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+on_ft = ['html', 'vue', 'css', 'scss', 'sass']
+
+[[plugins]]
 repo = 'othree/yajs.vim'
 on_ft = 'javascript'
 
@@ -131,7 +137,7 @@ let g:vue_disable_pre_processors=1
 '''
 
 [[plugins]]
-repo = 'baabelfish/nvim-nim'
+repo = 'unclechu/nvim-nim'
 on_ft = ["nim"]
 
 [[plugins]]

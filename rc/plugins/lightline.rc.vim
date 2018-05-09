@@ -97,6 +97,9 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineBattery()
+    if !$TMUX
+        return ''
+    endif
     let battery = str2nr(system("pmset -g ps | tail -n 1 | awk '{print $3}' | sed 's/;//'")[:-3], 10)
     let batteryIcon = battery >= 80 ? ' ' :
                     \ battery >= 60 ? ' ' :
@@ -107,5 +110,8 @@ function! LightLineBattery()
 endfunction
 
 function! LightLineTime()
+    if !$TMUX
+        return ''
+    endif
     return system('date +"%H:%M"')[:-2]
 endfunction

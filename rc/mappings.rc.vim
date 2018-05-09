@@ -41,10 +41,14 @@ nnoremap q/ <Nop>
 " IM用の設定
 inoremap <silent> っｊ <Esc><Esc>
 
+" ビジュアルモードのインデント
+vnoremap > >gv
+vnoremap < <gv
+
 " Window
 noremap [window] <Nop>
 map <Space> [window]
-map [window]n :split<CR>
+map [window]s :split<CR>
 map [window]v :vsplit<CR>
 map [window]c <C-W>c
 map [window]<C-c> :close!<CR> 

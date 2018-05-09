@@ -34,15 +34,6 @@ repo = 'Shougo/neomru.vim'
 # }}}
 
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-build = 'bash install.sh'
-hook_add = '''set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls'],
-    \ }
-'''
-
-[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = "source ~/.vim/rc/plugins/lightline.rc.vim"
 
@@ -78,6 +69,8 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+[[plugins]]
+repo ="nelstrom/vim-visual-star-search"
 
 ### Colorschemes ###{{{
 
