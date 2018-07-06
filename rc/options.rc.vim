@@ -57,13 +57,20 @@ set cinwords=if,else,for,while,try,except,class,brake,case,struct
 set t_Co=256
 set background=dark
 set termguicolors
-colorscheme sidonia
+colorscheme nord
+let g:nord_italic = 1
+
 
 "Folding
 set foldmethod=marker
 set foldcolumn=4
 set fillchars=vert:\| 
 set foldtext=MyFoldText()
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=0 concealcursor=niv
+endif
 
 "function! MyFoldText(){{{
 function! MyFoldText()

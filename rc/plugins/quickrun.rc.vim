@@ -67,7 +67,11 @@ let g:quickrun_config['swift'] = {
             \ 'cmdopt': 'swift',
             \ 'exec': '%c %o %s',
             \}
-
+let g:quickrun_config['nim'] = {
+            \ 'command': 'nim',
+            \ 'cmdopt': 'c -r --hints:off',
+            \ 'exec': '%c %o %s',
+            \}
 
 " <C-c> で実行を強制終了させる
 " quickrun.vim が実行していない場合には <C-c> を呼び出す

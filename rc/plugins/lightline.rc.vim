@@ -1,7 +1,7 @@
 set noshowmode
 
 let g:lightline = {
-            \ 'colorscheme' : 'jellybeans'
+            \ 'colorscheme' : 'nord'
             \ }
 let g:lightline.active = {
             \   'left': [ ['mode', 'paste'],
@@ -12,7 +12,7 @@ let g:lightline.active = {
             \ }
 let g:lightline.tabline = {
             \ 'left': [ [ 'tabs' ] ],
-            \ 'right': [ [ 'battery', 'time' ] ]
+            \ 'right': [[]]
             \ }
 let g:lightline.component = {
             \   'readonly': '%{&readonly ? "⭤" : ""}',
@@ -33,11 +33,11 @@ let g:lightline.component_function = {
             \ }
 
 let g:lightline.separator = {
-            \   'left': '', 'right': "\ue0b2"
+            \   'left': "\ue0b0", 'right': "\ue0b2"
             \ }
 
 let g:lightline.subseparator = {
-            \ 'left': '', 'right': '\ue0b3'
+            \ 'left': "\ue0b1", 'right': '\ue0b3'
             \ }
 
 function! LightLineModified()
@@ -97,7 +97,7 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineBattery()
-    if !$TMUX
+    if $TMUX
         return ''
     endif
     let battery = str2nr(system("pmset -g ps | tail -n 1 | awk '{print $3}' | sed 's/;//'")[:-3], 10)
@@ -110,7 +110,7 @@ function! LightLineBattery()
 endfunction
 
 function! LightLineTime()
-    if !$TMUX
+    if $TMUX
         return ''
     endif
     return system('date +"%H:%M"')[:-2]

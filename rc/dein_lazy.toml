@@ -11,10 +11,11 @@ hook_source = '''
     let g:deoplete#enable_refresh_always = 0
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#file#enable_buffer_path = 1
+    let g:deoplete#auto_complete_delay = 0
     inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-    let g:deoplete#auto_complete_delay = 10
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 
 [[plugins]]
@@ -27,12 +28,11 @@ repo = 'Shougo/neosnippet.vim''
 on_i = 1
 depends = ['neosnippet-snippets']
 hook_source = '''
-    inoremap <C-k> <Plug>(neosnippet_expand_or_jump)
-    snoremap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xnoremap <C-k> <Plug>(neosnippet_expand_target)
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#enable_completed_snippet = 1
-    let g:neosnippet#expand_word_boundary = 1
+    " Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
 '''
 
 [[plugins]]
@@ -42,6 +42,10 @@ depends = ['deoplete.nvim']
 hook_source = '''
 let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/cling/0.5_1/libexec/lib/libclang.dylib"
 '''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_ft = ['html', 'vue', 'xml', 'markdown']
 # }}}
 
 ### Editing ###{{{
@@ -87,46 +91,38 @@ on_ft = ["python", "python2", "python3"]
 
 ### markdown ###{{{
 
-[[plugins]]
-repo = 'godlygeek/tabular'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-on_ft = 'markdown'
-hook_source = '''
-hi link htmlItalic CursorLineNr
-hi link htmlBold WarningMsg
-hi link htmlBoldItalic Error
-autocmd MyAutoCmd Filetype markdown hi clear Conceal
-autocmd MyAutoCmd Filetype markdown hi link Conceal texStatement
-let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_math = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_folding_disabled = 1
-'''
-
-[[plugins]]
-repo = 'iamcco/mathjax-support-for-mkdp'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'iamcco/markdown-preview.vim'
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'godlygeek/tabular'
+# on_ft = 'markdown'
+#
+# [[plugins]]
+# repo = 'plasticboy/vim-markdown'
+# on_ft = 'markdown'
+# hook_source = '''
+# hi link htmlItalic CursorLineNr
+# hi link htmlBold WarningMsg
+# hi link htmlBoldItalic Error
+# au FileType markdown setl conceallevel=0
+# autocmd MyAutoCmd Filetype markdown hi clear Conceal
+# autocmd MyAutoCmd Filetype markdown hi link Conceal texStatement
+# let g:vim_markdown_no_default_key_mappings = 1
+# let g:vim_markdown_frontmatter = 1
+# let g:vim_markdown_toc_autofit = 1
+# let g:vim_markdown_folding_disabled = 1
+# '''
+#
+# [[plugins]]
+# repo = 'iamcco/mathjax-support-for-mkdp'
+# on_ft = 'markdown'
+#
+# [[plugins]]
+# repo = 'iamcco/markdown-preview.vim'
+# on_ft = 'markdown'
 # }}}
 
 [[plugins]]
 repo = 'docunext/closetag.vim'
 on_ft = ['html', 'vue', 'xml', 'markdown']
-
-[[plugins]]
-repo = 'cakebaker/scss-syntax.vim'
-on_ft = ['html', 'vue', 'css', 'scss', 'sass']
-
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = 'javascript'
 
 [[plugins]]
 repo = 'posva/vim-vue'

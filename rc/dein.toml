@@ -72,17 +72,14 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo ="nelstrom/vim-visual-star-search"
 
+[[plugins]]
+repo ="sheerun/vim-polyglot"
+
 ### Colorschemes ###{{{
 
 [[plugins]]
-repo = 'w0ng/vim-hybrid'
+repo = 'arcticicestudio/nord-vim'
 
 [[plugins]]
 repo = 'tpozzi/Sidonia'
-
-[[plugins]]
-repo = 'jeetsukumaran/vim-nefertiti'
-
-[[plugins]]
-repo = 'jonathanfilip/vim-lucius'
 # }}}
