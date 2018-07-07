@@ -79,10 +79,20 @@ augroup LightLineOnALE
     autocmd User ALELint call lightline#update()
 augroup END
 
+function! ALEStatusLine()
+    let l:count = ale#statusline#Count(bufnr(''))
+    let l:errors = l:count.error + l:count.style_error
+    let l:warnings = l:count.warning + l:count.style_warning
+    return l:count.total == 0 ? '⬥ ok' :
+                \ l:errors != 0 && l:warnings != 0 ? ' ' . l:errors . ' ' . l:warnings :
+                \ l:errors != 0 && l:warnings == 0 ? ' ' . l:errors :
+                \ ' ' . l:warnings
+endfunction
+
 function! LightLineAle()
     return &ft == 'denite' ? '' :
                 \ &ft == 'nerdtree' ? '':
-                \ ALEGetStatusLine()
+                \ ALEStatusLine()
 endfunction
 
 function! LightLineFugitive()
