@@ -15,7 +15,7 @@ let g:lightline.tabline = {
             \ 'right': [[]]
             \ }
 let g:lightline.component = {
-            \   'readonly': '%{&readonly ? "⭤" : ""}',
+            \   'readonly': '%{&readonly ? "" : ""}',
             \ }
 
 let g:lightline.component_function = {
@@ -84,7 +84,7 @@ function! ALEStatusLine()
     let l:errors = l:count.error + l:count.style_error
     let l:warnings = l:count.warning + l:count.style_warning
     return l:count.total == 0 ? '⬥ ok' :
-                \ l:errors != 0 && l:warnings != 0 ? ' ' . l:errors . ' ' . l:warnings :
+                \ l:errors != 0 && l:warnings != 0 ? ' ' . l:errors . ' ' . ' ' . l:warnings :
                 \ l:errors != 0 && l:warnings == 0 ? ' ' . l:errors :
                 \ ' ' . l:warnings
 endfunction
@@ -99,7 +99,7 @@ function! LightLineFugitive()
     try
         if &ft !~? 'vimfiler\|gundo\|vaffle' && exists('*fugitive#head')
             let _ = fugitive#head()
-            return strlen(_) ? '⭠ '._ : ''
+            return strlen(_) ? ' '._ : ''
         endif
     catch
     endtry

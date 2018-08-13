@@ -25,6 +25,24 @@ hook_add = '''
     nnoremap <silent> <Space><Space> :<C-u>Denite<Space>buffer<CR>
     nnoremap <silent> [denite]o :<C-u>Denite<Space>outline<CR>
     nnoremap <silent> <Space>/ :<C-u>DeniteProjectDir<Space>grep<CR>
+
+    " C-n / C-p to move
+    call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
+    call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
+
+    call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+    call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+    call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+
+    call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+
+'''
+hook_post_source = '''
+    call denite#custom#var('file_rec', 'command', ['rg', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
 '''
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
@@ -42,6 +60,33 @@ repo = 'w0rp/ale'
 hook_add = '''
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = [" %d", " %d", "⬥ ok"]
+'''
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+    set hidden
+    set hidden
+    let g:LanguageClient_serverCommands = {
+        \ 'vue': ['vls'],
+        \ 'html': [],
+        \ 'css': [],
+        \ 'javascript': ['javascript-typescript-stdio'],
+        \ 'c': ['cquery', 
+        \ '--log-file=/tmp/cq.log', 
+        \ '--init={"cacheDirectory":"/var/cquery/"}'],
+        \ 'cpp': ['cquery', 
+        \ '--log-file=/tmp/cq.log', 
+        \ '--init={"cacheDirectory":"/var/cquery/"}']
+        \ }
+    nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+    " not stop completion $ & /
+    setlocal iskeyword+=$
+    setlocal iskeyword+=-
 '''
 
 [[plugins]]

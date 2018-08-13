@@ -44,6 +44,10 @@ let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/cling/0.5_1/libe
 '''
 
 [[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp', 'objc', 'objcpp']
+
+[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 on_ft = ['html', 'vue', 'xml', 'markdown']
 # }}}
@@ -129,7 +133,7 @@ repo = 'posva/vim-vue'
 on_ft = 'vue'
 hook_source = '''
 autocmd FileType vue syntax sync fromstart
-let g:vue_disable_pre_processors=1
+let g:vue_disable_pre_processors=0
 '''
 
 [[plugins]]
