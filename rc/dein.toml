@@ -90,8 +90,18 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-hook_add = 'let g:surround_{char2nr("(")} = "(\r)"'
+repo = 'machakann/vim-sandwich'
+hook_add = '''
+    runtime macros/sandwich/keymap/surround.vim
+    xmap is <Plug>(textobj-sandwich-query-i)
+    xmap as <Plug>(textobj-sandwich-query-a)
+    omap is <Plug>(textobj-sandwich-query-i)
+    omap as <Plug>(textobj-sandwich-query-a)
+    xmap iss <Plug>(textobj-sandwich-auto-i)
+    xmap ass <Plug>(textobj-sandwich-auto-a)
+    omap iss <Plug>(textobj-sandwich-auto-i)
+    omap ass <Plug>(textobj-sandwich-auto-a)
+'''
 
 [[plugins]]
 repo = 'tyru/caw.vim'
@@ -118,12 +128,26 @@ repo = 'tpope/vim-fugitive'
 repo ="nelstrom/vim-visual-star-search"
 
 [[plugins]]
-repo ="sheerun/vim-polyglot"
+repo = "sheerun/vim-polyglot"
+
+[[plugins]]
+repo = "Yggdroot/indentLine"
+hook_add = '''
+let g:indentLine_char = '⎸'
+let g:indentLine_color_term = 0
+let g:indentLine_bgcolor_term = "NONE"
+let g:indentLine_color_gui = '#3b4252'
+let g:indentLine_bgcolor_gui = 'NONE'
+
+'''
 
 ### Colorschemes ###{{{
 
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
+hook_add = '''
+let g:nord_uniform_diff_background = 0
+'''
 
 [[plugins]]
 repo = 'tpozzi/Sidonia'

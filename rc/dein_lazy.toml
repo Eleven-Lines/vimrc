@@ -129,22 +129,6 @@ repo = 'docunext/closetag.vim'
 on_ft = ['html', 'vue', 'xml', 'markdown']
 
 [[plugins]]
-repo = 'posva/vim-vue'
-on_ft = 'vue'
-hook_source = '''
-autocmd FileType vue syntax sync fromstart
-let g:vue_disable_pre_processors=0
-'''
-
-[[plugins]]
-repo = 'unclechu/nvim-nim'
-on_ft = ["nim"]
-
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ["toml"]
-
-[[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
 

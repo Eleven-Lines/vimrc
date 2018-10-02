@@ -62,7 +62,7 @@ let g:nord_italic = 1
 
 
 "Folding
-set foldmethod=marker
+set foldmethod=syntax
 set foldcolumn=4
 set fillchars=vert:\| 
 set foldtext=MyFoldText()
